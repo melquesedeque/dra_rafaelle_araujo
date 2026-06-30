@@ -68,6 +68,11 @@ h1 {
   line-height: 0.95;
 }
 
+#catalog-title {
+  font-size: clamp(1.05rem, 4.2vw + 0.35rem, 4.75rem);
+  white-space: nowrap;
+}
+
 .catalog-list {
   display: grid;
   align-items: start;
@@ -100,7 +105,7 @@ h1 {
 .catalog-card p {
   margin: 0;
   color: $muted;
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.7;
 }
 
@@ -192,7 +197,7 @@ h1 {
 .info-details p {
   margin: 0;
   color: $muted;
-  font-size: 0.98rem;
+  font-size: 0.9rem;
   line-height: 1.65;
 }
 

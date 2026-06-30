@@ -42,13 +42,13 @@ export class App implements OnDestroy {
     {
       title: 'Consulta estética',
       description:
-        'Avaliação para elaboração de um plano de tratamento personalizado com tecnologia avançada de imagem e inteligência artificial para uma análise profunda e precisa da pele.',
+        'Avaliação para elaboração de um plano de tratamento personalizado, com uma análise detalhada e precisa da pele.',
       details: [
         'Avaliação completa do estado da pele, elaborando um plano de tratamento personalizado e alinhando skincare para alcançar a sua melhor aparência.',
         '*Incluso uma revitalização facial, visando melhorar o aspecto da pele de forma imediata.',
       ],
       duration: '1h30',
-      price: 'R$ 380',
+      price: 'R$ 150',
     },
     {
       title: 'Limpeza de pele tradicional',
@@ -69,7 +69,7 @@ export class App implements OnDestroy {
         'Reduz manchas, cicatrizes, poros dilatados, acne, linhas finas e rugas. Melhora a textura e aparência, traz mais luminosidade e atenua os sinais de envelhecimento. Trabalhamos com diferentes tipos de peelings, podendo ser mais superficiais ou descamativos.',
       ],
       duration: '1h',
-      price: 'R$ 120',
+      price: 'R$ 170',
     },
     {
       title: 'Microagulhamento',
@@ -148,7 +148,7 @@ export class App implements OnDestroy {
       after: 'results/paciente-02-depois.png',
     },
     {
-      procedure: 'Tratamento facial',
+      procedure: 'Tratamento acne',
       before: 'results/paciente-03-antes.png',
       after: 'results/paciente-03-depois.png',
     },
