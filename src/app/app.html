@@ -1,10 +1,9 @@
 <main class="catalog-page">
   <header class="hero">
-    <img class="brand-logo" src="logo-rafaelle.svg" alt="Dra. Rafaelle Araújo Fisioterapeuta" />
+    <img class="brand-logo" src="logo-rafaelle-nova.png" alt="Rafaelle Araujo Estética Avançada" />
   </header>
 
   <section class="catalog" aria-labelledby="catalog-title">
-    <p class="eyebrow">Catálogo</p>
     <h1 id="catalog-title">Conheça nossos procedimentos</h1>
 
     <div class="catalog-list">
@@ -16,13 +15,34 @@
           </div>
 
           <div class="catalog-meta">
-            <span>Duração: {{ item.duration }}</span>
+            <span class="duration">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 2" />
+              </svg>
+              Duração: {{ item.duration }}
+            </span>
+            <span class="meta-separator">|</span>
             <strong>{{ item.price }}</strong>
           </div>
 
-          <a class="info-link" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
-            Mais informações
-          </a>
+          <button
+            class="info-link"
+            type="button"
+            [attr.aria-expanded]="isExpanded(item.title)"
+            (click)="toggleInfo(item.title)"
+          >
+            <span>Mais informações</span>
+            <span class="info-icon" aria-hidden="true">{{ isExpanded(item.title) ? '×' : '+' }}</span>
+          </button>
+
+          @if (isExpanded(item.title)) {
+            <div class="info-details">
+              @for (detail of item.details; track detail) {
+                <p>{{ detail }}</p>
+              }
+            </div>
+          }
         </article>
       }
     </div>
@@ -31,8 +51,50 @@
   <section class="results" aria-labelledby="results-title">
     <p class="eyebrow">Antes e depois</p>
     <h2 id="results-title">Resultados de pacientes</h2>
-    <div class="results-placeholder">
-      <span>Fotos dos resultados podem ser adicionadas aqui.</span>
+
+    <div class="results-carousel" aria-live="polite">
+      <button class="carousel-control previous" type="button" aria-label="Resultado anterior" (click)="previousResult()">
+        ‹
+      </button>
+
+      <div class="results-carousel-window">
+        <div
+          class="results-carousel-track"
+          [class.is-resetting]="!carouselTransitionEnabled()"
+          [class.is-moving-previous]="carouselDirection() === 'previous'"
+          [style.gap.px]="carouselGap()"
+          [style.transform]="carouselTrackTransform()"
+          (transitionend)="handleCarouselTransitionEnd($event)"
+        >
+          @for (result of carouselSlides(); track result.id) {
+            <article
+              class="result-card"
+              [class.is-active]="isActiveSlide(result)"
+              [attr.aria-hidden]="isActiveSlide(result) ? null : 'true'"
+              [style.width.px]="carouselCardWidth()"
+            >
+              <p class="result-procedure">Procedimento:</p>
+              <h3>{{ result.procedure }}</h3>
+
+              <div class="result-images">
+                <figure>
+                  <img [src]="result.before" alt="Foto antes do procedimento" />
+                  <figcaption>Antes</figcaption>
+                </figure>
+
+                <figure>
+                  <img [src]="result.after" alt="Foto depois do procedimento" />
+                  <figcaption>Depois</figcaption>
+                </figure>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+
+      <button class="carousel-control next" type="button" aria-label="Próximo resultado" (click)="nextResult()">
+        ›
+      </button>
     </div>
   </section>
 
